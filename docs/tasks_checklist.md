@@ -70,7 +70,9 @@
   - SwipeCard now animates off-screen and supports stacking. Further polish after user feedback.
   - Fixed swipe constraints and centering issues based on user feedback. Card now drags freely and is perfectly centered.
   - Temporarily replaced swipe gesture with Next/Previous buttons for card navigation to ensure reliable progress.
-- [ ] Create PropertyCard component with image carousel
+- [x] Create PropertyCard component with image carousel
+  - PropertyCard component completed with image carousel, navigation arrows, indicators, and property details display.
+  - Supports multiple images, features, and responsive design.
 - [ ] Build onboarding flow screens
 - [ ] Create preference quiz interface
 - [ ] Implement user registration form

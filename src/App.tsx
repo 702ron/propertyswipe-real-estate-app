@@ -1,41 +1,13 @@
 import React, { useState } from "react";
-
-const mockCards = [
-  {
-    id: 1,
-    image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-    address: "123 Main St",
-    price: "$500,000",
-    beds: 3,
-    baths: 2,
-  },
-  {
-    id: 2,
-    image:
-      "https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=400&q=80",
-    address: "456 Oak Ave",
-    price: "$750,000",
-    beds: 4,
-    baths: 3,
-  },
-  {
-    id: 3,
-    image:
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=400&q=80",
-    address: "789 Pine Rd",
-    price: "$620,000",
-    beds: 3,
-    baths: 2,
-  },
-];
+import PropertyCard from "./components/PropertyCard";
+import { mockProperties } from "./data/mockProperties";
 
 function App() {
   const [index, setIndex] = useState(0);
-  const current = mockCards[index];
+  const current = mockProperties[index];
 
   const handleNext = () => {
-    if (index < mockCards.length - 1) setIndex(index + 1);
+    if (index < mockProperties.length - 1) setIndex(index + 1);
   };
 
   const handlePrev = () => {
@@ -43,37 +15,66 @@ function App() {
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-900">
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        backgroundColor: "#111827",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div style={{ textAlign: "center" }}>
         {current ? (
-          <div className="w-80 max-w-full h-96 bg-white rounded-xl shadow-xl flex flex-col items-center justify-center select-none mb-8">
-            <img
-              src={current.image}
-              alt="House"
-              className="w-64 h-40 object-cover rounded-lg mb-4"
-            />
-            <h2 className="text-xl font-semibold mb-2">{current.address}</h2>
-            <p className="text-gray-600">
-              {current.price} • {current.beds} Bed • {current.baths} Bath
-            </p>
+          <div style={{ marginBottom: "32px" }}>
+            <PropertyCard property={current} />
           </div>
         ) : (
-          <div className="text-white text-2xl font-bold mb-8">
-            No more cards!
+          <div
+            style={{
+              color: "white",
+              fontSize: "24px",
+              fontWeight: "bold",
+              marginBottom: "32px",
+            }}
+          >
+            No more properties!
           </div>
         )}
-        <div className="flex gap-4 justify-center">
+        <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
           <button
             onClick={handlePrev}
             disabled={index === 0}
-            className="px-4 py-2 rounded bg-gray-700 text-white disabled:opacity-50"
+            style={{
+              padding: "8px 16px",
+              borderRadius: "4px",
+              backgroundColor: index === 0 ? "#374151" : "#374151",
+              color: "white",
+              border: "none",
+              cursor: index === 0 ? "not-allowed" : "pointer",
+              opacity: index === 0 ? 0.5 : 1,
+            }}
           >
             Previous
           </button>
           <button
             onClick={handleNext}
-            disabled={index === mockCards.length - 1}
-            className="px-4 py-2 rounded bg-blue-600 text-white disabled:opacity-50"
+            disabled={index === mockProperties.length - 1}
+            style={{
+              padding: "8px 16px",
+              borderRadius: "4px",
+              backgroundColor:
+                index === mockProperties.length - 1 ? "#2563eb" : "#2563eb",
+              color: "white",
+              border: "none",
+              cursor:
+                index === mockProperties.length - 1 ? "not-allowed" : "pointer",
+              opacity: index === mockProperties.length - 1 ? 0.5 : 1,
+            }}
           >
             Next
           </button>
