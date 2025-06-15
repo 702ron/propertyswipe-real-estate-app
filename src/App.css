@@ -1,9 +1,12 @@
+/* Removed #root styles that were interfering with full-viewport layout */
+/*
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
+*/
 
 .logo {
   height: 6em;
