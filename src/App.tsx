@@ -1,19 +1,40 @@
 import React, { useState } from "react";
 import PropertyCard from "./components/PropertyCard";
+import Welcome from "./pages/Welcome";
 import { mockProperties } from "./data/mockProperties";
 
+type Screen = "welcome" | "properties";
+
 function App() {
-  const [index, setIndex] = useState(0);
-  const current = mockProperties[index];
+  const [currentScreen, setCurrentScreen] = useState<Screen>("welcome");
+  const [propertyIndex, setPropertyIndex] = useState(0);
 
-  const handleNext = () => {
-    if (index < mockProperties.length - 1) setIndex(index + 1);
+  const currentProperty = mockProperties[propertyIndex];
+
+  const handleGetStarted = () => {
+    setCurrentScreen("properties");
   };
 
-  const handlePrev = () => {
-    if (index > 0) setIndex(index - 1);
+  const handleNextProperty = () => {
+    if (propertyIndex < mockProperties.length - 1)
+      setPropertyIndex(propertyIndex + 1);
   };
 
+  const handlePrevProperty = () => {
+    if (propertyIndex > 0) setPropertyIndex(propertyIndex - 1);
+  };
+
+  const handleBackToWelcome = () => {
+    setCurrentScreen("welcome");
+    setPropertyIndex(0);
+  };
+
+  // Welcome Screen
+  if (currentScreen === "welcome") {
+    return <Welcome onGetStarted={handleGetStarted} />;
+  }
+
+  // Property Browsing Screen
   return (
     <div
       style={{
@@ -29,9 +50,28 @@ function App() {
       }}
     >
       <div style={{ textAlign: "center" }}>
-        {current ? (
+        {/* Back Button */}
+        <button
+          onClick={handleBackToWelcome}
+          style={{
+            position: "absolute",
+            top: "20px",
+            left: "20px",
+            backgroundColor: "rgba(255, 255, 255, 0.1)",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            padding: "8px 16px",
+            cursor: "pointer",
+            fontSize: "14px",
+          }}
+        >
+          ← Back
+        </button>
+
+        {currentProperty ? (
           <div style={{ marginBottom: "32px" }}>
-            <PropertyCard property={current} />
+            <PropertyCard property={currentProperty} />
           </div>
         ) : (
           <div
@@ -43,42 +83,66 @@ function App() {
             }}
           >
             No more properties!
+            <div style={{ fontSize: "16px", marginTop: "16px" }}>
+              <button
+                onClick={handleBackToWelcome}
+                style={{
+                  backgroundColor: "#667eea",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "8px",
+                  padding: "12px 24px",
+                  cursor: "pointer",
+                }}
+              >
+                Start Over
+              </button>
+            </div>
           </div>
         )}
-        <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
-          <button
-            onClick={handlePrev}
-            disabled={index === 0}
-            style={{
-              padding: "8px 16px",
-              borderRadius: "4px",
-              backgroundColor: index === 0 ? "#374151" : "#374151",
-              color: "white",
-              border: "none",
-              cursor: index === 0 ? "not-allowed" : "pointer",
-              opacity: index === 0 ? 0.5 : 1,
-            }}
+
+        {currentProperty && (
+          <div
+            style={{ display: "flex", gap: "16px", justifyContent: "center" }}
           >
-            Previous
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={index === mockProperties.length - 1}
-            style={{
-              padding: "8px 16px",
-              borderRadius: "4px",
-              backgroundColor:
-                index === mockProperties.length - 1 ? "#2563eb" : "#2563eb",
-              color: "white",
-              border: "none",
-              cursor:
-                index === mockProperties.length - 1 ? "not-allowed" : "pointer",
-              opacity: index === mockProperties.length - 1 ? 0.5 : 1,
-            }}
-          >
-            Next
-          </button>
-        </div>
+            <button
+              onClick={handlePrevProperty}
+              disabled={propertyIndex === 0}
+              style={{
+                padding: "8px 16px",
+                borderRadius: "4px",
+                backgroundColor: propertyIndex === 0 ? "#374151" : "#374151",
+                color: "white",
+                border: "none",
+                cursor: propertyIndex === 0 ? "not-allowed" : "pointer",
+                opacity: propertyIndex === 0 ? 0.5 : 1,
+              }}
+            >
+              Previous
+            </button>
+            <button
+              onClick={handleNextProperty}
+              disabled={propertyIndex === mockProperties.length - 1}
+              style={{
+                padding: "8px 16px",
+                borderRadius: "4px",
+                backgroundColor:
+                  propertyIndex === mockProperties.length - 1
+                    ? "#2563eb"
+                    : "#2563eb",
+                color: "white",
+                border: "none",
+                cursor:
+                  propertyIndex === mockProperties.length - 1
+                    ? "not-allowed"
+                    : "pointer",
+                opacity: propertyIndex === mockProperties.length - 1 ? 0.5 : 1,
+              }}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
