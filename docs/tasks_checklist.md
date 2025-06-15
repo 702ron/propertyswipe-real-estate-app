@@ -73,8 +73,13 @@
 - [x] Create PropertyCard component with image carousel
   - PropertyCard component completed with image carousel, navigation arrows, indicators, and property details display.
   - Supports multiple images, features, and responsive design.
-- [ ] Build onboarding flow screens
-- [ ] Create preference quiz interface
+- [x] Build onboarding flow screens
+  - Welcome screen with value proposition and call-to-action completed.
+  - Navigation flow between Welcome -> Style Quiz -> Properties implemented.
+- [x] Create preference quiz interface
+  - Style Discovery quiz with 8 curated home style images completed.
+  - Progress indicator, smooth animations, and preference tracking implemented.
+  - User preferences are stored and displayed during property browsing.
 - [ ] Implement user registration form
 - [ ] Create property details modal/page
 

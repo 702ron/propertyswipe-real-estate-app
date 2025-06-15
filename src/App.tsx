@@ -1,18 +1,29 @@
 import React, { useState } from "react";
 import PropertyCard from "./components/PropertyCard";
 import Welcome from "./pages/Welcome";
+import StyleQuiz from "./pages/StyleQuiz";
 import { mockProperties } from "./data/mockProperties";
 
-type Screen = "welcome" | "properties";
+type Screen = "welcome" | "styleQuiz" | "properties";
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>("welcome");
   const [propertyIndex, setPropertyIndex] = useState(0);
+  const [userPreferences, setUserPreferences] = useState<string[]>([]);
 
   const currentProperty = mockProperties[propertyIndex];
 
   const handleGetStarted = () => {
+    setCurrentScreen("styleQuiz");
+  };
+
+  const handleStyleQuizComplete = (preferences: string[]) => {
+    setUserPreferences(preferences);
     setCurrentScreen("properties");
+  };
+
+  const handleBackFromStyleQuiz = () => {
+    setCurrentScreen("welcome");
   };
 
   const handleNextProperty = () => {
@@ -27,11 +38,22 @@ function App() {
   const handleBackToWelcome = () => {
     setCurrentScreen("welcome");
     setPropertyIndex(0);
+    setUserPreferences([]);
   };
 
   // Welcome Screen
   if (currentScreen === "welcome") {
     return <Welcome onGetStarted={handleGetStarted} />;
+  }
+
+  // Style Quiz Screen
+  if (currentScreen === "styleQuiz") {
+    return (
+      <StyleQuiz
+        onComplete={handleStyleQuizComplete}
+        onBack={handleBackFromStyleQuiz}
+      />
+    );
   }
 
   // Property Browsing Screen
@@ -68,6 +90,24 @@ function App() {
         >
           ← Back
         </button>
+
+        {/* User Preferences Display */}
+        {userPreferences.length > 0 && (
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              right: "20px",
+              backgroundColor: "rgba(255, 255, 255, 0.1)",
+              color: "white",
+              borderRadius: "8px",
+              padding: "8px 12px",
+              fontSize: "12px",
+            }}
+          >
+            Your styles: {userPreferences.join(", ")}
+          </div>
+        )}
 
         {currentProperty ? (
           <div style={{ marginBottom: "32px" }}>
