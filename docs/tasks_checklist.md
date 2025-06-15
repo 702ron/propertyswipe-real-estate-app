@@ -3,15 +3,17 @@
 ## Pre-Development Setup
 
 ### Project Initialization
-- [ ] Set up version control repository (GitHub/GitLab)
-- [ ] Create project structure and boilerplate
-- [ ] Set up development environment
-- [ ] Configure ESLint, Prettier, and TypeScript
+
+- [x] Set up version control repository (GitHub/GitLab)
+- [x] Create project structure and boilerplate
+- [x] Set up development environment
+- [x] Configure ESLint, Prettier, and TypeScript
 - [ ] Set up CI/CD pipeline basics
 - [ ] Create development, staging, and production environments
 - [ ] Set up project management tool (Linear, Jira, or Notion)
 
 ### Design & Assets
+
 - [ ] Create brand identity and logo
 - [ ] Design app icon and favicon
 - [ ] Create style guide and component library
@@ -21,6 +23,7 @@
 - [ ] Design agent dashboard wireframes
 
 ### Legal & Compliance
+
 - [ ] Draft privacy policy
 - [ ] Create terms of service
 - [ ] Research MLS compliance requirements
@@ -30,6 +33,7 @@
 ## Phase 1: MVP Development (Weeks 1-6)
 
 ### Backend Foundation
+
 - [ ] Set up Express.js server with TypeScript
 - [ ] Configure PostgreSQL database
 - [ ] Set up Prisma ORM and migrations
@@ -40,6 +44,7 @@
 - [ ] Set up API documentation with Swagger
 
 ### Database Schema
+
 - [ ] Design and create Users table
 - [ ] Design and create Properties table
 - [ ] Design and create Interactions table
@@ -49,17 +54,20 @@
 - [ ] Create seed data for development
 
 ### Frontend Foundation
-- [ ] Set up React app with TypeScript and Vite
-- [ ] Configure Tailwind CSS
-- [ ] Set up Zustand for state management
-- [ ] Create basic routing with React Router
-- [ ] Set up Framer Motion for animations
-- [ ] Create responsive layout components
-- [ ] Set up PWA configuration
+
+- [x] Set up React app with TypeScript and Vite
+- [x] Configure Tailwind CSS
+- [x] Set up Zustand for state management
+- [x] Set up Framer Motion for animations
+- [x] Create basic routing with React Router (pending)
+- [x] Create responsive layout components (in progress)
+- [x] Set up PWA configuration (pending)
 
 ### Core Components
-- [ ] Create SwipeCard component
-- [ ] Implement gesture handling for swipes
+
+- [x] Create SwipeCard component
+- [x] Implement gesture handling for swipes
+  - SwipeCard now animates off-screen and supports stacking. Further polish after user feedback.
 - [ ] Create PropertyCard component with image carousel
 - [ ] Build onboarding flow screens
 - [ ] Create preference quiz interface
@@ -67,6 +75,7 @@
 - [ ] Create property details modal/page
 
 ### Authentication & User Management
+
 - [ ] Implement user registration
 - [ ] Create login/logout functionality
 - [ ] Add email verification
@@ -75,6 +84,7 @@
 - [ ] Implement session persistence
 
 ### Property Management
+
 - [ ] Create property data models
 - [ ] Build property upload interface (admin)
 - [ ] Implement property search and filtering
@@ -83,6 +93,7 @@
 - [ ] Build property details display
 
 ### Lead Generation
+
 - [ ] Create lead capture forms
 - [ ] Implement lead scoring system
 - [ ] Set up email notification system
@@ -93,6 +104,7 @@
 ## Phase 2: Enhanced Features (Weeks 7-10)
 
 ### MLS Integration
+
 - [ ] Research and select MLS data provider
 - [ ] Set up MLS API credentials and access
 - [ ] Create MLS data sync service
@@ -102,6 +114,7 @@
 - [ ] Add data validation and cleanup
 
 ### Agent Dashboard
+
 - [ ] Create agent registration and login
 - [ ] Build lead management interface
 - [ ] Implement agent-property assignment
@@ -111,6 +124,7 @@
 - [ ] Create agent profile management
 
 ### Enhanced User Experience
+
 - [ ] Add advanced filtering options
 - [ ] Implement saved properties functionality
 - [ ] Create property comparison feature
@@ -120,6 +134,7 @@
 - [ ] Add social sharing capabilities
 
 ### Email & Communications
+
 - [ ] Set up email templates
 - [ ] Create automated email sequences
 - [ ] Implement SMS notifications (Twilio)
@@ -128,6 +143,7 @@
 - [ ] Add calendar integration for showings
 
 ### Performance & Optimization
+
 - [ ] Implement image lazy loading
 - [ ] Add Progressive Web App features
 - [ ] Optimize bundle size and loading times
@@ -139,6 +155,7 @@
 ## Phase 3: Advanced Features (Weeks 11-16)
 
 ### Machine Learning & Personalization
+
 - [ ] Implement preference learning algorithm
 - [ ] Create recommendation engine
 - [ ] Add behavioral analysis
@@ -148,6 +165,7 @@
 - [ ] Add predictive lead scoring
 
 ### Analytics & Insights
+
 - [ ] Set up comprehensive event tracking
 - [ ] Create user behavior analytics
 - [ ] Build conversion funnel analysis
@@ -157,6 +175,7 @@
 - [ ] Add cohort analysis
 
 ### Gamification
+
 - [ ] Create user engagement scoring
 - [ ] Implement achievement badges
 - [ ] Add progress tracking
@@ -166,6 +185,7 @@
 - [ ] Create reward system
 
 ### Advanced Integrations
+
 - [ ] Integrate with Google Maps for neighborhood data
 - [ ] Add school district information
 - [ ] Implement commute time calculations
@@ -175,6 +195,7 @@
 - [ ] Create calendar scheduling system
 
 ### Security & Compliance
+
 - [ ] Implement comprehensive security audit
 - [ ] Add rate limiting and DDoS protection
 - [ ] Create data encryption at rest
@@ -186,6 +207,7 @@
 ## Testing & Quality Assurance
 
 ### Unit Testing
+
 - [ ] Set up Jest and testing utilities
 - [ ] Write unit tests for utility functions
 - [ ] Test React components with React Testing Library
@@ -195,6 +217,7 @@
 - [ ] Achieve 80%+ code coverage
 
 ### Integration Testing
+
 - [ ] Set up integration test environment
 - [ ] Test API integration flows
 - [ ] Test MLS data synchronization
@@ -203,6 +226,7 @@
 - [ ] Test third-party integrations
 
 ### End-to-End Testing
+
 - [ ] Set up Playwright or Cypress
 - [ ] Test complete user registration flow
 - [ ] Test property swiping and interactions
@@ -212,6 +236,7 @@
 - [ ] Create automated test suite
 
 ### Performance Testing
+
 - [ ] Load testing with multiple concurrent users
 - [ ] Database performance optimization
 - [ ] API response time optimization
@@ -222,6 +247,7 @@
 ## Deployment & Launch
 
 ### Infrastructure Setup
+
 - [ ] Configure production servers
 - [ ] Set up database backups
 - [ ] Configure monitoring and alerting
@@ -231,6 +257,7 @@
 - [ ] Create deployment scripts
 
 ### Pre-Launch Testing
+
 - [ ] Beta testing with select users
 - [ ] Agent onboarding and training
 - [ ] Stress testing with production data
@@ -240,6 +267,7 @@
 - [ ] Mobile device testing
 
 ### Launch Preparation
+
 - [ ] Create launch marketing materials
 - [ ] Set up customer support system
 - [ ] Prepare launch announcement
@@ -249,6 +277,7 @@
 - [ ] Create launch day checklist
 
 ### Post-Launch Tasks
+
 - [ ] Monitor system performance and errors
 - [ ] Collect and analyze user feedback
 - [ ] Track key performance metrics
@@ -260,6 +289,7 @@
 ## Ongoing Maintenance
 
 ### Weekly Tasks
+
 - [ ] Review error logs and fix critical issues
 - [ ] Update dependencies and security patches
 - [ ] Analyze user engagement metrics
@@ -267,6 +297,7 @@
 - [ ] Update property data from MLS
 
 ### Monthly Tasks
+
 - [ ] Performance optimization review
 - [ ] Security audit and updates
 - [ ] User experience analysis
@@ -275,6 +306,7 @@
 - [ ] Feature usage analytics review
 
 ### Quarterly Tasks
+
 - [ ] Major feature releases
 - [ ] Technology stack updates
 - [ ] Comprehensive security review
