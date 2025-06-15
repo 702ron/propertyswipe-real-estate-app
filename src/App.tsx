@@ -43,37 +43,41 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-gray-900">
-      {current ? (
-        <div className="w-80 max-w-full h-96 bg-white rounded-xl shadow-xl flex flex-col items-center justify-center select-none">
-          <img
-            src={current.image}
-            alt="House"
-            className="w-64 h-40 object-cover rounded-lg mb-4"
-          />
-          <h2 className="text-xl font-semibold mb-2">{current.address}</h2>
-          <p className="text-gray-600">
-            {current.price} • {current.beds} Bed • {current.baths} Bath
-          </p>
+    <div className="fixed inset-0 bg-gray-900">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        {current ? (
+          <div className="w-80 max-w-full h-96 bg-white rounded-xl shadow-xl flex flex-col items-center justify-center select-none mb-8">
+            <img
+              src={current.image}
+              alt="House"
+              className="w-64 h-40 object-cover rounded-lg mb-4"
+            />
+            <h2 className="text-xl font-semibold mb-2">{current.address}</h2>
+            <p className="text-gray-600">
+              {current.price} • {current.beds} Bed • {current.baths} Bath
+            </p>
+          </div>
+        ) : (
+          <div className="text-white text-2xl font-bold mb-8">
+            No more cards!
+          </div>
+        )}
+        <div className="flex gap-4 justify-center">
+          <button
+            onClick={handlePrev}
+            disabled={index === 0}
+            className="px-4 py-2 rounded bg-gray-700 text-white disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={index === mockCards.length - 1}
+            className="px-4 py-2 rounded bg-blue-600 text-white disabled:opacity-50"
+          >
+            Next
+          </button>
         </div>
-      ) : (
-        <div className="text-white text-2xl font-bold">No more cards!</div>
-      )}
-      <div className="flex gap-4 mt-8">
-        <button
-          onClick={handlePrev}
-          disabled={index === 0}
-          className="px-4 py-2 rounded bg-gray-700 text-white disabled:opacity-50"
-        >
-          Previous
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={index === mockCards.length - 1}
-          className="px-4 py-2 rounded bg-blue-600 text-white disabled:opacity-50"
-        >
-          Next
-        </button>
       </div>
     </div>
   );
