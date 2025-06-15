@@ -35,12 +35,12 @@ function App() {
   const [index, setIndex] = useState(0);
   const current = mockCards[index];
 
-  const handleSwipe = (_dir: "left" | "right") => {
+  const handleSwipe = () => {
     setIndex((prev) => prev + 1);
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center relative overflow-hidden">
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gray-900">
       {current && (
         <SwipeCard onSwipe={handleSwipe} keyProp={current.id}>
           <div className="flex flex-col items-center w-full h-full">

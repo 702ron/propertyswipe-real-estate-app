@@ -32,6 +32,7 @@ const SwipeCard: React.FC<SwipeCardProps> = ({
     ]
   );
   const [isLeaving, setIsLeaving] = useState<null | "left" | "right">(null);
+  const [dragEnabled, setDragEnabled] = useState(true);
 
   const likeOpacity = useTransform(x, [40, 120], [0, 1]);
   const nopeOpacity = useTransform(x, [-120, -40], [1, 0]);
@@ -42,14 +43,21 @@ const SwipeCard: React.FC<SwipeCardProps> = ({
   ) {
     if (info.offset.x > SWIPE_THRESHOLD) {
       setIsLeaving("right");
+      setDragEnabled(false);
     } else if (info.offset.x < -SWIPE_THRESHOLD) {
       setIsLeaving("left");
+      setDragEnabled(false);
     }
   }
 
   function handleAnimationComplete() {
     if (isLeaving) {
       onSwipe(isLeaving);
+      setTimeout(() => {
+        setIsLeaving(null);
+        setDragEnabled(true);
+        x.set(0);
+      }, 200); // reset state for next card
     }
   }
 
@@ -59,8 +67,7 @@ const SwipeCard: React.FC<SwipeCardProps> = ({
         key={keyProp}
         className="w-80 max-w-full h-96 bg-white rounded-xl shadow-xl flex items-center justify-center select-none touch-pan-y absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         style={{ x, rotate, background: bg }}
-        drag={isLeaving ? false : "x"}
-        dragConstraints={{ left: 0, right: 0 }}
+        drag={dragEnabled && !isLeaving ? "x" : false}
         dragElastic={0.18}
         onDragEnd={handleDragEnd}
         whileTap={{ scale: 0.97 }}

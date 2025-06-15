@@ -68,6 +68,7 @@
 - [x] Create SwipeCard component
 - [x] Implement gesture handling for swipes
   - SwipeCard now animates off-screen and supports stacking. Further polish after user feedback.
+  - Fixed swipe constraints and centering issues based on user feedback. Card now drags freely and is perfectly centered.
 - [ ] Create PropertyCard component with image carousel
 - [ ] Build onboarding flow screens
 - [ ] Create preference quiz interface
