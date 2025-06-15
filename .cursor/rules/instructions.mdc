@@ -1,0 +1,324 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# PropertySwipe - Cursor AI Instructions
+
+## Project Context
+
+You are helping build **PropertySwipe**, a Tinder-style real estate lead generation platform. Users swipe through properties to indicate preferences, starting with a style discovery quiz using stock photos, then viewing real properties in their area. When users show interest, agents receive qualified leads.
+
+## Technology Stack
+
+### Frontend
+- **React 18+** with **TypeScript** (strict mode)
+- **Vite** for build tooling
+- **Tailwind CSS** for styling (mobile-first approach)
+- **Zustand** for state management
+- **Framer Motion** for animations
+- **React Router** for navigation
+- **React Hook Form** for form handling
+- **React Query** for server state management
+
+### Backend
+- **Node.js** with **Express.js** and **TypeScript**
+- **Prisma ORM** with **PostgreSQL**
+- **Redis** for caching and sessions
+- **AWS S3** for image storage
+- **SendGrid** for email services
+- **JWT** for authentication
+
+## Code Style & Standards
+
+### TypeScript Guidelines
+- Use strict TypeScript configuration
+- Prefer interfaces over types for object shapes
+- Use proper generic types for reusable components
+- Always type function parameters and return values
+- Use discriminated unions for complex state management
+
+### React Patterns
+- Use functional components with hooks only
+- Prefer custom hooks for complex logic
+- Use proper dependency arrays in useEffect
+- Implement proper error boundaries
+- Use React.memo for performance optimization when needed
+
+### File Naming Conventions
+- Components: `PascalCase.tsx` (e.g., `PropertyCard.tsx`)
+- Hooks: `camelCase.ts` starting with "use" (e.g., `usePropertySwipe.ts`)
+- Utilities: `camelCase.ts` (e.g., `formatPrice.ts`)
+- Constants: `SCREAMING_SNAKE_CASE.ts` (e.g., `API_ENDPOINTS.ts`)
+- Types: `PascalCase.types.ts` (e.g., `Property.types.ts`)
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── ui/               # Reusable UI components
+│   ├── forms/            # Form components
+│   ├── cards/            # Card components (PropertyCard, SwipeCard)
+│   └── layout/           # Layout components
+├── pages/                # Page components
+├── hooks/                # Custom React hooks
+├── stores/               # Zustand stores
+├── services/             # API calls and external services
+├── utils/                # Utility functions
+├── types/                # TypeScript type definitions
+├── constants/            # App constants
+└── assets/               # Static assets
+
+server/
+├── routes/               # Express route handlers
+├── controllers/          # Business logic
+├── models/               # Prisma models and database logic
+├── middleware/           # Express middleware
+├── services/             # External service integrations
+├── utils/                # Server utilities
+└── types/                # Server TypeScript types
+```
+
+## Component Development Guidelines
+
+### SwipeCard Component Requirements
+- Implement smooth touch/mouse gesture handling
+- Support both swipe and button interactions
+- Include visual feedback (color changes, icons)
+- Handle edge cases (rapid swipes, incomplete gestures)
+- Implement proper accessibility features
+- Include haptic feedback for mobile devices
+
+### PropertyCard Component Requirements
+- Responsive image handling with lazy loading
+- Price formatting with proper currency display
+- Feature highlights with icons
+- Expandable details with smooth animations
+- Social sharing capabilities
+- Bookmark/save functionality
+
+### State Management Patterns
+- Use Zustand stores for global state (user preferences, auth)
+- Use React Query for server state (properties, leads)
+- Keep component state local when possible
+- Implement optimistic updates for better UX
+
+## API Design Patterns
+
+### RESTful Conventions
+- Use proper HTTP methods and status codes
+- Implement consistent error response format
+- Include pagination for list endpoints
+- Use query parameters for filtering and sorting
+- Implement proper CORS configuration
+
+### Authentication & Security
+- Implement JWT-based authentication
+- Use HTTP-only cookies for refresh tokens
+- Rate limiting on all endpoints
+- Input validation and sanitization
+- Proper error handling without information leakage
+
+## Database Design Principles
+
+### Prisma Schema Guidelines
+- Use descriptive model and field names
+- Implement proper relationships with foreign keys
+- Include created/updated timestamps
+- Use enums for predefined values
+- Add proper indexes for query performance
+
+### Example Models Priority
+```prisma
+model User {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  phone             String?
+  preferenceProfile Json?    // Flexible preference storage
+  interactions      Interaction[]
+  leads             Lead[]
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Property {
+  id            String   @id @default(cuid())
+  mlsId         String?  @unique
+  price         Int
+  bedrooms      Int
+  bathrooms     Float
+  squareFootage Int?
+  address       String
+  city          String
+  state         String
+  zipCode       String
+  images        Json     // Array of image URLs
+  features      Json     // Flexible feature storage
+  interactions  Interaction[]
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+```
+
+## Performance Requirements
+
+### Frontend Performance
+- First Contentful Paint < 2 seconds
+- Largest Contentful Paint < 2.5 seconds
+- Cumulative Layout Shift < 0.1
+- First Input Delay < 100ms
+- Implement proper image optimization (WebP, lazy loading)
+- Use React.memo and useMemo for expensive calculations
+
+### Backend Performance
+- API response times < 200ms for standard queries
+- Database query optimization with proper indexes
+- Implement Redis caching for frequently accessed data
+- Use connection pooling for database connections
+- Implement proper logging without performance impact
+
+## Testing Strategy
+
+### Frontend Testing
+- Unit tests for utility functions and hooks
+- Component testing with React Testing Library
+- Integration tests for user flows
+- E2E tests for critical paths
+- Visual regression testing for UI components
+
+### Backend Testing
+- Unit tests for controllers and services
+- Integration tests for API endpoints
+- Database testing with test fixtures
+- Authentication flow testing
+- Rate limiting and security testing
+
+## Accessibility Requirements
+
+- Implement proper ARIA labels and roles
+- Ensure keyboard navigation works throughout app
+- Maintain proper color contrast ratios
+- Provide alternative text for images
+- Implement focus management for modal interactions
+- Support screen readers for swipe interactions
+
+## Mobile-First Considerations
+
+### Touch Interactions
+- Implement proper touch targets (44px minimum)
+- Handle touch gestures smoothly
+- Provide visual feedback for all interactions
+- Consider thumb zones for navigation
+- Implement pull-to-refresh where appropriate
+
+### Performance on Mobile
+- Optimize images for different screen densities
+- Minimize JavaScript bundle size
+- Implement proper caching strategies
+- Handle slow network connections gracefully
+- Consider battery usage for animations
+
+## Error Handling Patterns
+
+### Frontend Error Handling
+- Implement error boundaries for component trees
+- Use React Query error handling for API calls
+- Provide user-friendly error messages
+- Implement retry mechanisms for failed requests
+- Log errors to external service (Sentry)
+
+### Backend Error Handling
+- Use consistent error response format
+- Implement proper HTTP status codes
+- Log errors with proper context
+- Handle database connection failures
+- Implement graceful degradation
+
+## Security Considerations
+
+### Input Validation
+- Validate all user inputs on both client and server
+- Sanitize data before database operations
+- Implement proper file upload validation
+- Use parameterized queries to prevent SQL injection
+- Implement CSRF protection
+
+### Data Protection
+- Encrypt sensitive data at rest
+- Use HTTPS for all communications
+- Implement proper session management
+- Follow GDPR/CCPA compliance requirements
+- Implement audit logging for sensitive operations
+
+## Development Workflow
+
+### Code Generation Guidelines
+- Always include proper TypeScript types
+- Add JSDoc comments for complex functions
+- Include error handling in all async operations
+- Write tests alongside implementation code
+- Use descriptive variable and function names
+- Follow the established file structure
+
+### Git Workflow
+- Use conventional commit messages
+- Create feature branches for new development
+- Include tests with all new features
+- Update documentation for API changes
+- Run type checking and linting before commits
+
+## Specific Implementation Notes
+
+### Swipe Algorithm
+- Track swipe velocity and distance
+- Implement snap-to-position after release
+- Handle edge cases (quick successive swipes)
+- Store swipe data for preference learning
+- Provide visual feedback during swipe
+
+### Preference Learning
+- Start with explicit preferences from quiz
+- Update preferences based on swipe behavior
+- Weight recent interactions more heavily
+- Consider time spent viewing details
+- Account for geographic preferences
+
+### Lead Scoring
+- Factor in user engagement level
+- Consider property interaction depth
+- Weight by user profile completeness
+- Account for response to agent outreach
+- Update scores based on conversion events
+
+## Code Review Checklist
+
+When generating or reviewing code, ensure:
+- [ ] TypeScript types are properly defined
+- [ ] Error handling is implemented
+- [ ] Performance considerations are addressed
+- [ ] Accessibility features are included
+- [ ] Mobile responsiveness is maintained
+- [ ] Tests are written for new functionality
+- [ ] Security best practices are followed
+- [ ] Code follows established patterns
+- [ ] Documentation is updated as needed
+
+## Common Patterns to Implement
+
+### Custom Hooks Examples
+- `usePropertySwipe()` - Handle swipe logic and animations
+- `usePreferenceTracker()` - Track and update user preferences
+- `useLeadGeneration()` - Manage lead creation and submission
+- `usePropertyFilter()` - Handle property filtering and search
+- `useImageOptimization()` - Manage image loading and optimization
+
+### Utility Functions
+- `formatPrice()` - Format price with proper currency
+- `calculateDistance()` - Calculate distance between coordinates
+- `generateLeadScore()` - Calculate lead quality score
+- `optimizeImage()` - Generate optimized image URLs
+- `validatePropertyData()` - Validate property data structure
+
+Remember: Always prioritize user experience, performance, and code maintainability. When in doubt, choose the solution that provides the best user experience while maintaining clean, readable code.
